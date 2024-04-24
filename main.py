@@ -15,6 +15,11 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
  
+
+# tkcalendar
+
+from tkcalendar import Calendar, DateEntry
+from datetime import date
  
  
  
@@ -181,8 +186,8 @@ def grafico_pie():
  
     canva_categoria = FigureCanvasTkAgg(figura, frame_gra_pie)
     canva_categoria.get_tk_widget().grid(row=0, column=0)
- 
- 
+
+
  
  
 porcentagem()
@@ -192,5 +197,110 @@ grafico_bar()
 resumo()
  
 grafico_pie()
+
+
+# Criando Frames dentro do Frame Baixo
+
+frame_renda = Frame(frameBaixo, width=300, height=250, bg=co1)
+frame_renda.grid(row=0, column=0)
+
+frame_operacoes = Frame(frameBaixo, width=220, height=250, bg=co1)
+frame_operacoes.grid(row=0, column=1, padx=5)
+
+frame_configuracao = Frame(frameBaixo, width=300, height=250, bg=co1)
+frame_configuracao.grid(row=0, column=2, padx=5)
+
+
+# Tabela Renda Mensal ----------------
+
+app_tabela = Label(frameMeio, text="Tabela Receitas e Despesas", anchor=NW, font=('Verdana 12'), bg=co1, fg=co4)
+app_tabela.place(x=5, y=309)
+
+
+# Função para mostrar renda
+
+def mostrar_renda():
+
+    #creating a treeview with dual scrollbars
+
+    tabela_head = ['#Id','Categoria','Data','Quantia']
+
+    lista_itens = [[0,2,3,4],[0,2,3,4],[0,2,3,4],[0,2,3,4]]
+    
+    global tree
+
+    tree = ttk.Treeview(frame_renda, selectmode="extended",columns=tabela_head, show="headings")
+
+    # vertical scrollbar
+
+    vsb = ttk.Scrollbar(frame_renda, orient="vertical", command=tree.yview)
+
+    # horizontal scrollbar
+
+    hsb = ttk.Scrollbar(frame_renda, orient="horizontal", command=tree.xview)
+
+    tree.configure(yscrollcommand=vsb.set, xscrollcommand=hsb.set)
+
+    tree.grid(column=0, row=0, sticky='nsew')
+    vsb.grid(column=1, row=0, sticky='ns')
+    hsb.grid(column=0, row=1, sticky='ew')
+
+    hd=["center","center","center", "center"]
+    h=[30,100,100,100]
+    n=0
+
+    for col in tabela_head:
+        tree.heading(col, text=col.title(), anchor=CENTER)
+
+        # adjust the column's width to the header string
+
+        tree.column(col, width=h[n],anchor=hd[n])
+        
+        n+=1
+
+    for item in lista_itens:
+        tree.insert('', 'end', values=item)
  
+
+
+mostrar_renda()
+
+
+# Configurações Despesas 
+
+l_info = Label(frame_operacoes, text='Insira novas despesas', height=1, anchor=NW, font=('Verdana 10 bold'), bg=co1, fg=co4)
+l_info.place(x=10, y=10)
+
+
+# Categoria -----------
+
+l_categoria = Label(frame_operacoes, text='Categoria', height=1, anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+l_categoria.place(x=10, y=40)
+
+# Pegando categorias 
+
+categoria_funcao = ['Viagem', 'Comida']
+categoria = []
+
+for i in categoria_funcao:
+    categoria.append(i[1])
+
+combo_categoria_despesas = ttk.Combobox(frame_operacoes, width=10, font=('Ivy 10'))
+combo_categoria_despesas['values'] = (categoria)
+combo_categoria_despesas.place(x=110, y=41)
+
+# Despesas 
+
+l_cal_despesas = Label(frame_operacoes, text='Data', height=1, anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+l_cal_despesas.place(x=10, y=70)
+
+e_cal_despesas = DateEntry(frame_operacoes, width=12, background='darkblue', foreground='white', borderwith=2, year=2023)
+e_cal_despesas.place(x=110, y=71)
+
+
+
+
+
+
+
 janela.mainloop()
