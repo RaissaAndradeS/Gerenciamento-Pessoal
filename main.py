@@ -1,8 +1,9 @@
 from tkinter import *
 from tkinter import Tk, ttk
+from tkinter import Label, LEFT, RAISED, NW
  
 # importando Pillow
- 
+
 from PIL import Image, ImageTk
  
 # importando barra de progresso
@@ -66,12 +67,12 @@ frame_gra_pie.place(x=415, y=5)
  
 # Frame Cima
  
-#app_img = Image.open('Orcamento-Pessoal-main\Orcamento-Pessoal-main\Icon.jpg')
-#app_img = app_img.resize((45,45))
-#app_img = ImageTk.PhotoImage(app_img)
- 
-#app_logo = Label(frameCima, Image=app_img, text=" Orçamento ", width=900,compound=LEFT, padx=5,relief=RAISED, anchor=NW, font=('Verdana 20 bold'), bg=co1, fg=co4, )
-#app_logo.place(x=0, y=0)
+app_img = Image.open('icon.jpg')
+app_img = app_img.resize((45,45))
+app_img = ImageTk.PhotoImage(app_img)
+
+app_logo = Label(frameCima, image=app_img, text=" Orçamento ", width=900, compound=LEFT, padx=5, relief=RAISED, anchor=NW, font='Verdana 20 bold', bg=co1, fg=co4)
+app_logo.place(x=0, y=0)
  
 # Porcentagem------------
  
@@ -289,7 +290,7 @@ combo_categoria_despesas = ttk.Combobox(frame_operacoes, width=10, font=('Ivy 10
 combo_categoria_despesas['values'] = (categoria)
 combo_categoria_despesas.place(x=110, y=41)
 
-# Despesas 
+# Despesas ----------------
 
 l_cal_despesas = Label(frame_operacoes, text='Data', height=1, anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
 l_cal_despesas.place(x=10, y=70)
@@ -297,10 +298,22 @@ l_cal_despesas.place(x=10, y=70)
 e_cal_despesas = DateEntry(frame_operacoes, width=12, background='darkblue', foreground='white', borderwith=2, year=2023)
 e_cal_despesas.place(x=110, y=71)
 
+# Valor --------------
 
+l_valor_despesas = Label(frame_operacoes, text='Quantia Total', height=1, anchor=NW, font=('Ivy 10'), bg=co1, fg=co4)
+l_valor_despesas.place(x=10, y=100)
 
+e_valor_despesas = Entry(frame_operacoes, width=14, justify='left', relief='solid')
+e_valor_despesas.place(x=110, y=101)
 
+# Botao Inserir
 
+#img_add_despesas = Image.open('inserir.png')
+#img_add_despesas = img_add_despesas.resize((17,17))
+#img_add_despesas = ImageTk.PhotoImage(img_add_despesas)
+
+#botao_inserir_despesas = Button(frame_operacoes, image=img_add_despesas,text="Adicionar".upper(), width=80, command=LEFT, anchor=NW, font=('Ivy 7 bold'), bg=co1, fg=co0, overrelief=RIDGE)
+#botao_inserir_despesas.place(x=110, y=131)
 
 
 janela.mainloop()
