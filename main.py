@@ -308,12 +308,25 @@ e_valor_despesas.place(x=110, y=101)
 
 # Botao Inserir
 
-#img_add_despesas = Image.open('inserir.png')
-#img_add_despesas = img_add_despesas.resize((17,17))
-#img_add_despesas = ImageTk.PhotoImage(img_add_despesas)
+img_add_despesas = Image.open('inserir.png')
+img_add_despesas = img_add_despesas.resize((17,17))
+img_add_despesas = ImageTk.PhotoImage(img_add_despesas)
 
-#botao_inserir_despesas = Button(frame_operacoes, image=img_add_despesas,text="Adicionar".upper(), width=80, command=LEFT, anchor=NW, font=('Ivy 7 bold'), bg=co1, fg=co0, overrelief=RIDGE)
-#botao_inserir_despesas.place(x=110, y=131)
+botao_inserir_despesas = Button(frame_operacoes, image=img_add_despesas,text="Adicionar".upper(), width=80, command=LEFT, anchor=NW, font=('Ivy 7 bold'), bg=co1, fg=co0, overrelief=RIDGE)
+botao_inserir_despesas.place(x=110, y=131)
+
+
+# Botao Excluir
+
+l_excluir = Label(frame_operacoes, text='Excluir ações', height=1, anchor=NW, font=('Ivy 10 bold'), bg=co1, fg=co4)
+l_excluir.place(x=10, y=190)
+
+img_delete = Image.open('excluir.png')
+img_delete = img_delete.resize((17,17))
+img_delete = ImageTk.PhotoImage(img_delete)
+
+botao_deletar= Button(frame_operacoes, image=img_delete,text="Deletar".upper(), width=80, command=LEFT, anchor=NW, font=('Ivy 7 bold'), bg=co1, fg=co0, overrelief=RIDGE)
+botao_deletar.place(x=110, y=190)
 
 
 janela.mainloop()
